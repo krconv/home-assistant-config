@@ -44,7 +44,6 @@ light:
           service_template: switch.turn_'{{ "off" if brightness == 0 else "on" }}'
           entity_id: switch.kitchen_lights
 
-# Cloud
 cloud:
   google_actions:
     filter:
@@ -54,6 +53,16 @@ cloud:
       exclude_entities:
         - switch.living_room_lights
         - switch.kitchen_lights
+
+mqtt:
+  broker: localhost:1883
+  discovery: true
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
 group: !include groups.yaml
 automation: !include automations.yaml
