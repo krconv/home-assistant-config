@@ -55,7 +55,7 @@ cloud:
         - switch.kitchen_lights
 
 mqtt:
-  broker: localhost:1883
+  broker: localhost
   discovery: true
   birth_message:
     topic: 'hass/status'
