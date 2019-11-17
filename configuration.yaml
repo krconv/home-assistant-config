@@ -48,9 +48,10 @@ light:
 cloud:
   google_actions:
     filter:
+      exclude_domains:
+        - group
+        - media_player
       exclude_entities:
-        - group.*
-        - media_player.*
         - switch.living_room_lights
         - switch.kitchen_lights
 
