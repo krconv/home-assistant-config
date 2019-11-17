@@ -18,8 +18,8 @@ light:
   - platform: template
     lights:
       living_room_lights:
-        friendly_name: 'Living Room Lights'
-        level_template: '{{ 255 if is_state("switch.living_room_lights", "on") else 0 }}'
+        friendly_name: 'Living Room lights'
+        level_template: '{{ 100 if is_state("switch.living_room_lights", "on") else 0 }}'
         value_template: '{{ is_state("switch.living_room_lights", "on") }}'
         turn_on:
           service: switch.turn_on
@@ -30,6 +30,13 @@ light:
         set_level:
           service_template: switch.turn_'{{ "off" if brightness == 0 else "on" }}'
           entity_id: switch.living_room_lights
+
+# Cloud
+cloud:
+  google_actions:
+    filter:
+      exclude_entities:
+        - switch.living_room_lights
 
 group: !include groups.yaml
 automation: !include automations.yaml
