@@ -1,1 +1,10 @@
-[]
+- alias: "Wake-up lights"
+  trigger:
+    platform: time
+    at: "05:40:00"
+  action:
+    - service: light.turn_on
+      entity_id: light.bedroom_lights
+      data:
+        transition: 1800
+        brightness: 255
