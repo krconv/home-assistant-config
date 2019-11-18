@@ -64,6 +64,9 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
 
+# iOS app
+ios:
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
