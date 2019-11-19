@@ -5,6 +5,5 @@
   action:
     - service: light.turn_on
       entity_id: light.bedroom_lights
-      data:
-        transition: 1800
-        brightness: 255
+      transition: 1800
+      brightness: 255
