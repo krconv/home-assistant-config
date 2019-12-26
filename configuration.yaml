@@ -6,8 +6,8 @@ default_config:
 http:
   server_port: 443
   base_url: https://crunch.infra.conve.rs:443
-  ssl_certificate: /certs/cert.pem
-  ssl_key: /certs/private.pem
+  ssl_certificate: /ssl/cert.pem
+  ssl_key: /ssl/private.pem
 
 # Text to speech
 tts:
