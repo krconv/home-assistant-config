@@ -75,7 +75,6 @@ android_ip_webcam:
 ios:
 
 homekit:
-  advertise_ip: crunch.infra.conve.rs
 
 group: !include groups.yaml
 automation: !include automations.yaml
