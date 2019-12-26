@@ -74,6 +74,8 @@ android_ip_webcam:
 # iOS app
 ios:
 
+homekit:
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
