@@ -22,4 +22,4 @@ jobs:
         script: |
           cd ${{ secrets.DIRECTORY }}
           git pull
-          docker-compose restart
+          docker restart homeassistant
