@@ -36,6 +36,7 @@ android_ip_webcam:
     switches:
       - torch
       - video_recording
+    sensors:
 
 # iOS app
 ios:
