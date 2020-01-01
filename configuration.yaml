@@ -19,6 +19,7 @@ cloud:
       exclude_domains:
         - group
         - media_player
+        - automation
 
 mqtt:
   broker: localhost
@@ -48,6 +49,7 @@ homekit:
     exclude_domains:
       - device_tracker
       - person
+      - automation
 
 group: !include groups.yaml
 automation: !include automations.yaml
