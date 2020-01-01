@@ -44,6 +44,10 @@ ios:
 # HomeKit support
 homekit:
   auto_start: false # started after a delay using an automation
+  filter:
+    exclude_domains:
+      - device_tracker
+      - person
 
 group: !include groups.yaml
 automation: !include automations.yaml
