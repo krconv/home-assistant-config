@@ -13,46 +13,12 @@ http:
 tts:
   - platform: google_translate
 
-# Create light wrappers around discovered switches
-light:
-  - platform: template
-    lights:
-      living_room_lights:
-        friendly_name: 'Living Room Lights'
-        level_template: '{{ 100 if is_state("switch.living_room_lights", "on") else 0 }}'
-        value_template: '{{ is_state("switch.living_room_lights", "on") }}'
-        turn_on:
-          service: switch.turn_on
-          entity_id: switch.living_room_lights
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.living_room_lights
-        set_level:
-          service_template: switch.turn_'{{ "off" if brightness == 0 else "on" }}'
-          entity_id: switch.living_room_lights
-      kitchen_lights:
-        friendly_name: 'Kitchen Lights'
-        level_template: '{{ 100 if is_state("switch.kitchen_lights", "on") else 0 }}'
-        value_template: '{{ is_state("switch.kitchen_lights", "on") }}'
-        turn_on:
-          service: switch.turn_on
-          entity_id: switch.kitchen_lights
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.kitchen_lights
-        set_level:
-          service_template: switch.turn_'{{ "off" if brightness == 0 else "on" }}'
-          entity_id: switch.kitchen_lights
-
 cloud:
   google_actions:
     filter:
       exclude_domains:
         - group
         - media_player
-      exclude_entities:
-        - switch.living_room_lights
-        - switch.kitchen_lights
 
 mqtt:
   broker: localhost
@@ -74,7 +40,9 @@ android_ip_webcam:
 # iOS app
 ios:
 
+# HomeKit support
 homekit:
+  auto_start: false # started after a delay using an automation
 
 group: !include groups.yaml
 automation: !include automations.yaml
