@@ -1,5 +1,5 @@
-automation:
-  - alias: 'Start HomeKit after Delay'
+  - id: '1'
+    alias: 'Start HomeKit after Delay'
     trigger:
       - platform: homeassistant
         event: start
