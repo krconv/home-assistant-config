@@ -6,3 +6,16 @@
     action:
       - delay: 00:05
       - service: homekit.start
+  - id: '2'
+    alias: 'Update TP Link Switches'
+    initial_state: 'on'
+    trigger:
+      - platform: time_pattern
+        seconds: '*'
+    action:
+      - service: homeassistant.update_entity
+        data:
+          entity_id:
+            - light.bedroom_lights
+            - switch.living_room_lights
+            - switch.kitchen_lights
