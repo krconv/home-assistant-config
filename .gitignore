@@ -1,0 +1,11 @@
+.storage/
+custom_components/
+tts/
+
+.HA_VERSION
+aircast.xml
+secrets.yaml
+
+
+*.log
+*.db*

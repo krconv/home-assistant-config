@@ -1,0 +1,90 @@
+substitutions:
+  device_name: garage-doors
+  friendly_name: Garage Doors
+  assigned_ip_address: "192.168.86.210"
+  left_door_device_name: garage-left-door
+  left_door_friendly_name: Garage Left Door
+  right_door_device_name: garage-right-door
+  right_door_friendly_name: Garage Right Door
+
+packages:
+  generic: !include common/generic.yaml
+
+mqtt: # needed due to esphome/issues#1487
+  broker: !secret mqtt_host
+
+switch:
+  - platform: gpio
+    internal: true
+    pin: 4
+    id: left_door_relay
+  - platform: gpio
+    internal: true
+    pin: 5
+    id: right_door_relay
+
+binary_sensor:
+  - id: left_door_sensor
+    internal: true
+    platform: gpio
+    pin:
+      number: 15
+      mode: INPUT
+      inverted: False
+    device_class: garage_door
+    filters:
+      - delayed_on_off: 20ms
+  - id: right_door_sensor
+    internal: true
+    platform: gpio
+    pin:
+      number: 12
+      mode: INPUT
+      inverted: False
+    device_class: garage_door
+    filters:
+      - delayed_on_off: 20ms
+
+cover:
+  - platform: template
+    name: ${left_door_friendly_name}
+    device_class: garage
+    lambda: |-
+      if (id(left_door_sensor).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: left_door_relay
+      - delay: 1s
+      - switch.turn_off: left_door_relay
+    close_action:
+      - switch.turn_on: left_door_relay
+      - delay: 1s
+      - switch.turn_off: left_door_relay
+    stop_action:
+      - switch.turn_on: left_door_relay
+      - delay: 1s
+      - switch.turn_off: left_door_relay
+  - platform: template
+    name: ${right_door_friendly_name}
+    device_class: garage
+    lambda: |-
+      if (id(right_door_sensor).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: right_door_relay
+      - delay: 1s
+      - switch.turn_off: right_door_relay
+    close_action:
+      - switch.turn_on: right_door_relay
+      - delay: 1s
+      - switch.turn_off: right_door_relay
+    stop_action:
+      - switch.turn_on: right_door_relay
+      - delay: 1s
+      - switch.turn_off: right_door_relay

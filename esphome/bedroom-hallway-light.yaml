@@ -1,0 +1,10 @@
+substitutions:
+  device_name: bedroom-hallway-light
+  friendly_name: Bedroom Hallway Light
+  assigned_ip_address: "192.168.86.206"
+
+packages:
+  dimmer_light: !include common/dimmer_light.yaml
+
+mqtt: # needed due to esphome/issues#1487
+  broker: !secret mqtt_host

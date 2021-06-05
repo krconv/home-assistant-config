@@ -1,0 +1,7 @@
+- platform: template
+  sensors:
+    anyone_home:
+      unique_id: "sQHfgKEzauR4k8Zza5pv"
+      device_class: occupancy
+      friendly_name: "Anyone Home"
+      value_template: "{{ states.person | selectattr('state','eq','home') | list | count > 0 }}"

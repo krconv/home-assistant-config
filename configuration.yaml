@@ -1,0 +1,32 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+homekit:
+  advertise_ip: !secret host_ip_address
+  filter:
+    include_domains:
+      - light
+      - cover
+
+hacs:
+  token: !secret github_token
+
+automower:
+  username: !secret husqvarna_username
+  password: !secret husqvarna_password
+
+homeassistant:
+  customize: !include customize.yaml
+
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

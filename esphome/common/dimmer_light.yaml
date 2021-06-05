@@ -1,0 +1,52 @@
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  use_address: ${assigned_ip_address}
+
+  ap:
+    ssid: ${friendly_name}
+    password: !secret wifi_fallback_password
+
+captive_portal:
+
+mqtt:
+  broker: !secret mqtt_host
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  topic_prefix: device/${device_name}
+
+ota:
+
+logger:
+  baud_rate: 0
+  level: WARN
+
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+sensor:
+  - platform: wifi_signal
+    name: ${friendly_name} WiFi Signal
+    update_interval: 60s
+
+time:
+  - platform: sntp
+    id: sntp_time
+
+tuya:
+
+light:
+  - platform: "tuya"
+    name: ${friendly_name}
+    dimmer_datapoint: 2
+    switch_datapoint: 1
+    min_value: 100
+    max_value: 1000

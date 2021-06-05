@@ -1,0 +1,7 @@
+sensor.google_wifi_status:
+  friendly_name: WiFi Network Status
+  icon: mdi:wifi-check
+sensor.google_wifi_uptime:
+  friendly_name: WiFi Network Uptime
+sensor.google_wifi_local_ip:
+  friendly_name: Public IP Address
