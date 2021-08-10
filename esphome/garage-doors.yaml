@@ -56,17 +56,21 @@ cover:
         return COVER_CLOSED;
       }
     open_action:
-      - switch.turn_on: left_door_relay
-      - delay: 1s
-      - switch.turn_off: left_door_relay
+      - if:
+          condition:
+            lambda: 'return id(left_door_sensor).state == false;'
+          then:
+            - switch.turn_on: left_door_relay
+            - delay: 1s
+            - switch.turn_off: left_door_relay
     close_action:
-      - switch.turn_on: left_door_relay
-      - delay: 1s
-      - switch.turn_off: left_door_relay
-    stop_action:
-      - switch.turn_on: left_door_relay
-      - delay: 1s
-      - switch.turn_off: left_door_relay
+      - if:
+          condition:
+            lambda: 'return id(left_door_sensor).state == true;'
+          then:
+            - switch.turn_on: left_door_relay
+            - delay: 1s
+            - switch.turn_off: left_door_relay
   - platform: template
     name: ${right_door_friendly_name}
     device_class: garage
@@ -77,14 +81,18 @@ cover:
         return COVER_CLOSED;
       }
     open_action:
-      - switch.turn_on: right_door_relay
-      - delay: 1s
-      - switch.turn_off: right_door_relay
+      - if:
+          condition:
+            lambda: 'return id(right_door_sensor).state == false;'
+          then:
+            - switch.turn_on: right_door_relay
+            - delay: 1s
+            - switch.turn_off: right_door_relay
     close_action:
-      - switch.turn_on: right_door_relay
-      - delay: 1s
-      - switch.turn_off: right_door_relay
-    stop_action:
-      - switch.turn_on: right_door_relay
-      - delay: 1s
-      - switch.turn_off: right_door_relay
+      - if:
+          condition:
+            lambda: 'return id(right_door_sensor).state == true;'
+          then:
+            - switch.turn_on: right_door_relay
+            - delay: 1s
+            - switch.turn_off: right_door_relay

@@ -1,0 +1,10 @@
+substitutions:
+  device_name: living-room-outlet
+  friendly_name: Living Room Outlet
+  assigned_ip_address: "192.168.86.218"
+
+packages:
+  binary_switch: !include common/binary_switch.yaml
+
+mqtt: # needed due to esphome/issues#1487
+  broker: !secret mqtt_host

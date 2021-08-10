@@ -1,4 +1,3 @@
-
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
@@ -8,10 +7,29 @@ tts:
 
 homekit:
   advertise_ip: !secret host_ip_address
+  port: 21063
   filter:
     include_domains:
       - light
       - cover
+
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  service_account:
+    private_key: !secret google_assistant_service_account_private_key
+    client_email: !secret google_assistant_service_account_client_email
+  exposed_domains:
+    - switch
+    - light
+    - cover
+  report_state: true
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - 172.16.0.0/12
+    - ::1
 
 hacs:
   token: !secret github_token

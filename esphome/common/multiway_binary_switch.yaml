@@ -1,0 +1,80 @@
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  use_address: ${assigned_ip_address}
+
+  ap:
+    ssid: ${friendly_name}
+    password: !secret wifi_fallback_password
+
+captive_portal:
+
+mqtt:
+  broker: !secret mqtt_host
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  topic_prefix: device/${device_name}
+  on_json_message:
+    - topic: ${controlled_light_topic}/state
+      then:
+        if:
+          condition:
+            lambda: |-
+              return x.containsKey("state");
+          then:
+            light.control:
+              id: _light
+              state: !lambda |-
+                String state = x["state"];
+                return state == "ON";
+
+ota:
+
+logger:
+  level: WARN
+
+sensor:
+  - platform: wifi_signal
+    name: ${friendly_name} WiFi Signal
+    update_interval: 60s
+
+binary_sensor:
+  - platform: gpio
+    id: _button
+    pin:
+      number: GPIO13
+      inverted: true
+    on_press:
+      then:
+        - mqtt.publish_json:
+            topic: ${controlled_light_topic}/command
+            payload: |-
+              if (id(_light).current_values.is_on()) {
+                root["state"] = "OFF";
+              } else {
+                root["state"] = "ON";
+              }
+
+output:
+  - platform: gpio
+    pin: GPIO16
+    id: _unused
+  - platform: gpio
+    pin: GPIO4
+    id: _led
+    inverted: true
+
+light:
+  - platform: binary
+    id: _light
+    output: _unused
+    on_turn_on:
+      - output.turn_off: _led
+    on_turn_off:
+      - output.turn_on: _led

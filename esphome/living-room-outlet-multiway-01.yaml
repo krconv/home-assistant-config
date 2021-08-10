@@ -1,0 +1,11 @@
+substitutions:
+  device_name: living-room-outlet-multiway-01
+  friendly_name: Living Rooom Outlet Multiway (1)
+  controlled_light_topic: device/living-room-outlet/light/living_room_outlet
+  assigned_ip_address: "192.168.86.217"
+
+packages:
+  multiway_binary_switch: !include common/multiway_binary_switch.yaml
+  
+mqtt: # needed due to esphome/issues#1487
+  broker: !secret mqtt_host

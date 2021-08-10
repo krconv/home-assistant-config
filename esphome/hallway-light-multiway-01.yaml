@@ -1,0 +1,11 @@
+substitutions:
+  device_name: hallway-light-multiway-01
+  friendly_name: Hallway Light Multiway (1)
+  controlled_light_topic: device/hallway-light/light/hallway_light
+  assigned_ip_address: "192.168.86.215"
+
+packages:
+  multiway_binary_switch: !include common/multiway_binary_switch.yaml
+
+mqtt: # needed due to esphome/issues#1487
+  broker: !secret mqtt_host

@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "node-red-contrib-credentials": "~0.2.1",
         "node-red-node-openweathermap": "~0.4.0"
     }
 }

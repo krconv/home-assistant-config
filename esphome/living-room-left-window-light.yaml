@@ -1,7 +1,7 @@
 substitutions:
-  device_name: pantry-light
-  friendly_name: Pantry Light
-  assigned_ip_address: "192.168.86.208"
+  device_name: living-room-left-window-light
+  friendly_name: Living Room Left Window Light
+  assigned_ip_address: "192.168.86.214"
 
 packages:
   dimmer_switch: !include common/dimmer_switch.yaml

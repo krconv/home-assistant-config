@@ -4,7 +4,7 @@ substitutions:
   assigned_ip_address: "192.168.86.207"
 
 packages:
-  dimmer_light: !include common/dimmer_light.yaml
+  dimmer_switch: !include common/dimmer_switch.yaml
 
 mqtt: # needed due to esphome/issues#1487
   broker: !secret mqtt_host
