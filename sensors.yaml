@@ -1,6 +1,5 @@
 - platform: google_wifi
   host: !secret gateway_ip_address
   monitored_conditions:
-    - uptime
     - local_ip
     - status
