@@ -6,12 +6,29 @@ tts:
   - platform: google_translate
 
 homekit:
-  advertise_ip: !secret host_ip_address
-  port: 21063
-  filter:
-    include_domains:
-      - light
-      - cover
+  - name: Home Assitant Bridge
+    advertise_ip: !secret host_ip_address
+    port: 21063
+    mode: bridge
+    filter:
+      include_domains:
+        - light
+        - cover
+  - name: Driveway Camera
+    advertise_ip: !secret host_ip_address
+    port: 21064
+    mode: accessory
+    filter:
+      include_entities:
+        - camera.driveway_camera
+    entity_config:
+      camera.driveway_camera:
+        stream_source: !secret driveway_camera_rtsp_source
+        stream_address: !secret host_ip_address
+        support_audio: false
+        video_codec: copy
+
+ffmpeg:
 
 google_assistant:
   project_id: !secret google_assistant_project_id
@@ -22,7 +39,8 @@ google_assistant:
     - switch
     - light
     - cover
-  report_state: true
+    - camera
+  report_state: false
 
 http:
   use_x_forwarded_for: true
@@ -40,6 +58,8 @@ automower:
 
 homeassistant:
   customize: !include customize.yaml
+
+logger: !include logger.yaml
 
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml

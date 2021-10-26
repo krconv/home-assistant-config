@@ -1,0 +1,6 @@
+default: info
+logs:
+  aiohttp.server: critical
+  homeassistant.components.google_assistant.http: critical
+  homeassistant.components.google_wifi.sensor: error
+  homeassistant.components.homekit: debug

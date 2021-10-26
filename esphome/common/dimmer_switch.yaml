@@ -50,3 +50,7 @@ light:
     switch_datapoint: 1
     min_value: 100
     max_value: 1000
+    effects:
+      - strobe:
+      - flicker:
+      - random:

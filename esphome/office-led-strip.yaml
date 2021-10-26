@@ -1,0 +1,24 @@
+substitutions:
+  device_name: office-led-strip
+  friendly_name: Office LED Strip
+  assigned_ip_address: "192.168.86.222"
+
+packages:
+  generic: !include common/generic.yaml
+
+mqtt: # needed due to esphome/issues#1487
+  broker: !secret mqtt_host
+
+light:
+  - platform: neopixelbus
+    type: grb
+    pin: GPIO3
+    num_leds: 60
+    name: $friendly_name
+    variant: WS2812X
+    effects: 
+      - addressable_random_twinkle:
+      - addressable_fireworks:
+      - addressable_flicker: 
+      - addressable_rainbow:
+      - addressable_color_wipe:
