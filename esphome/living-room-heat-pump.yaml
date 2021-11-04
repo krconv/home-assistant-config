@@ -1,0 +1,8 @@
+substitutions:
+  device_name: living-room-heat-pump
+  friendly_name: Living Room Heat Pump
+  room_friendly_name: Living Room
+  assigned_ip_address: "192.168.86.203"
+
+packages:
+  heat_pump_controller: !include common/heat_pump_controller.yaml

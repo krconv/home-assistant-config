@@ -1,0 +1,8 @@
+substitutions:
+  device_name: bedroom-heat-pump
+  friendly_name: Bedroom Heat Pump
+  room_friendly_name: Bedroom
+  assigned_ip_address: "192.168.86.205"
+
+packages:
+  heat_pump_controller: !include common/heat_pump_controller.yaml

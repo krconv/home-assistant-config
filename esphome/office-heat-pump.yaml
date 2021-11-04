@@ -1,0 +1,8 @@
+substitutions:
+  device_name: office-heat-pump
+  friendly_name: Office Heat Pump
+  room_friendly_name: Office
+  assigned_ip_address: "192.168.86.204"
+
+packages:
+  heat_pump_controller: !include common/heat_pump_controller.yaml

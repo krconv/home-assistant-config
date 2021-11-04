@@ -14,6 +14,7 @@ homekit:
       include_domains:
         - light
         - cover
+        - climate
   - name: Driveway Camera
     advertise_ip: !secret host_ip_address
     port: 21064
@@ -40,6 +41,7 @@ google_assistant:
     - light
     - cover
     - camera
+    - climate
   report_state: false
 
 http:
